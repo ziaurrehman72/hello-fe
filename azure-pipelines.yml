@@ -10,12 +10,17 @@ pool:
   vmImage: ubuntu-latest
 
 steps:
-
+- script: |
+    echo Add other tasks to build, test, and deploy your project.
+    echo See https://aka.ms/yaml
+    npm install
+  displayName: 'Run a multi-line script'
 - task: Npm@1
   displayName: Install NPM Dependencies
   inputs:
     command: 'install'
     workingDir: 'package.json'
+
 - task: Npm@1
   displayName: Make Build
   inputs:
@@ -34,7 +39,4 @@ steps:
       $(Build.BuildId)
       latest
 
-- script: |
-    echo Add other tasks to build, test, and deploy your project.
-    echo See https://aka.ms/yaml
-  displayName: 'Run a multi-line script'
+
