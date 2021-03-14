@@ -9,12 +9,10 @@ trigger: none
 pool:
   vmImage: ubuntu-latest
 
+variables:
+  DOCKER_REPO: ziaurrehmans/hello-fe
 steps:
-# - script: |
-#     echo Add other tasks to build, test, and deploy your project.
-#     echo See https://aka.ms/yaml
-#     npm install
-#   displayName: 'Run a multi-line script'
+
 - task: Npm@1
   displayName: Install NPM Dependencies
   inputs:
@@ -32,7 +30,7 @@ steps:
   displayName: Build Docker Image and Push
   inputs:
     containerRegistry: 'Dockerhub-ServiceConnection'
-    repository: 'hello-fe'
+    repository: $(DOCKER_REPO)
     command: 'buildAndPush'
     Dockerfile: '**/Dockerfile'
     tags: |
@@ -40,3 +38,8 @@ steps:
       latest
 
 
+- script: |
+    docker run -P 80:80 $(DOCKER_REPO):latest
+    sleep 5
+    curl localhost
+  displayName: 'Sanity Check'
