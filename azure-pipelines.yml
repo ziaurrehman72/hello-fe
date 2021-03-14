@@ -19,7 +19,7 @@ steps:
   displayName: Install NPM Dependencies
   inputs:
     command: 'install'
-    workingDir: 'package.json'
+    workingDir: '.'
 
 - task: Npm@1
   displayName: Make Build
