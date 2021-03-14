@@ -25,7 +25,7 @@ steps:
   displayName: Make Build
   inputs:
     command: 'custom'
-    workingDir: 'package.json'
+    workingDir: '.'
     customCommand: 'build --prod'
 
 - task: Docker@2
