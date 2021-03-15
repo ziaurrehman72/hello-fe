@@ -39,8 +39,8 @@ steps:
       latest
 
 
-- script: |
-    docker run -p 80:80 $(DOCKER_REPO):latest
-    sleep 5
-    curl localhost
-  displayName: 'Sanity Check'
+# - script: |
+#     docker run -p 80:80 $(DOCKER_REPO):latest
+#     sleep 5
+#     curl localhost
+#   displayName: 'Sanity Check'
